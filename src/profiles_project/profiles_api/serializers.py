@@ -11,7 +11,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.UserProfile
         fields = ('id', 'email', 'name', 'password')
-        extra_kwargs = {'password': {'write_only':True}}
+        extra_kwargs = {
+            'last_login': {'read_only':True},
+            'password': {'write_only':True}}
 
         def create(self, validated_data):
             """Create and return a new user based on the validated data"""
